@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;700;800;900&display=swap");
+
+body {
+	margin: 0;
+	font-family: "Fira Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	background-color: rgb(23 23 23 / 1);
+
+	height: 100vh;
+}
+#root {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	--pure-black: rgb(0, 0, 0);
+	--pure-white: rgb(255, 255, 255);
+	--darker-white: rgb(240, 231, 231);
+	--black-50percent: rgba(24, 24, 24, 50%);
+	--black-100percent: rgba(24, 24, 24, 100%);
+}
+
+/* login and register pages */
+.form-container {
+	display: flex;
+	align-items: center;
+}
+
+.main-container {
+	height: 100%;
+}
+.home-container {
+	outline: 1px solid black;
+	position: relative;
+	width: 50%;
+	padding: 20px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	background-color: var(--pure-white);
+}
+
+/* modal temporary css */
+.modal-container::backdrop {
+	background-color: rgba(110, 110, 110, 0.5);
+}
