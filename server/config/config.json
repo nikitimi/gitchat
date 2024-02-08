@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "mysql123",
+    "password": "admin",
     "database": "reactsocialapp",
     "host": "localhost",
     "dialect": "mysql"
