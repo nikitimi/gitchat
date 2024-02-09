@@ -1,0 +1,8 @@
+{
+  "references": [
+    {
+      "path": "packages/social-app"
+    }
+  ],
+  "exclude": ["node_modules"]
+}

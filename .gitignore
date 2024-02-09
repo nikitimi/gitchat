@@ -1,4 +1,2 @@
-# Ignore node modules
-server/node_modules
-social-app/node_modules
+node_modules
 .env.*

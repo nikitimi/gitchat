@@ -1,0 +1,27 @@
+{
+  "name": "demo-app",
+  "version": "0.1.0",
+  "description": "This is a monorepo for the project Social App for React",
+  "scripts": {
+    "dev": "npm run dev --workspace=client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntnjoe/demo-app.git"
+  },
+  "keywords": [
+    "react-ts",
+    "vite",
+    "social-app"
+  ],
+  "author": "ntnjoe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ntnjoe/demo-app/issues"
+  },
+  "homepage": "https://github.com/ntnjoe/demo-app#readme",
+  "workspaces": [
+    "packages/server",
+    "packages/client"
+  ]
+}
