@@ -1,8 +1,35 @@
 import { ReactNode, createContext, useEffect, useReducer } from "react"
 
-export const AuthContext = createContext()
+// Define the types for state and dispatch actions
+type User = {
+  // Define the structure of your user object
+  // For example, you might have properties like id, name, email, etc.
+  // Update this type definition according to your actual user object structure
+  id: string
+  name: string
+  email: string
+}
 
-export const authReducer = (state, action) => {
+type State = {
+  user: User | null
+}
+
+type Action = {
+  type: "LOGIN" | "LOGOUT"
+  payload: User | null
+}
+
+// Create the context with default values
+export const AuthContext = createContext<{
+  state: State
+  dispatch: React.Dispatch<Action>
+}>({
+  state: { user: null },
+  dispatch: () => null,
+})
+
+// Define the reducer function
+const authReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "LOGIN":
       return { user: action.payload }
@@ -13,24 +40,23 @@ export const authReducer = (state, action) => {
   }
 }
 
+// Define the AuthContextProvider component
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(authReducer, {
-    user: null,
-  })
-  console.log("Current state of Auth Context: ", state)
-  
+  // Initialize state using useReducer
+  const [state, dispatch] = useReducer(authReducer, { user: null })
+
+  // Load user from localStorage on component mount
   useEffect(() => {
     const userFromLocalStorage = localStorage.getItem("user")
-    if (userFromLocalStorage === null) return
-
-    const user = JSON.parse(userFromLocalStorage)
-    if (user) {
+    if (userFromLocalStorage) {
+      const user: User = JSON.parse(userFromLocalStorage)
       dispatch({ type: "LOGIN", payload: user })
     }
   }, [])
 
+  // Render the AuthContext.Provider with the current state and dispatch function
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ state, dispatch }}>
       {children}
     </AuthContext.Provider>
   )

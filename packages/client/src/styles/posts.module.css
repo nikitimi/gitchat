@@ -1,5 +1,5 @@
 .imgContainer {
-  background: var(--black-100percent);
+  background: var(--black-100percent) !important;
 
   position: relative;
 }

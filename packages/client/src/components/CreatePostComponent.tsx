@@ -1,5 +1,5 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react"
-import "~/styles/createpost.module.css"
+import { type ChangeEvent, useEffect, useRef, useState } from "react"
+import styles from "~/styles/createpost.module.css"
 import ImageIcon from "~/assets/Image.svg?react"
 
 type CreatePostComponentProps<T> = {
@@ -37,17 +37,17 @@ function CreatePostComponent<T>({ isVisible }: CreatePostComponentProps<T>) {
   }, [isVisible, images])
 
   return (
-    <dialog ref={modal} className="dialogBox">
-      <form className="mainContainer">
+    <dialog ref={modal} className={styles.dialogBox}>
+      <form className={styles.mainContainer}>
         <textarea
           name="content"
           placeholder="What's on your mind?"
-          className="textArea"
+          className={styles.textArea}
         ></textarea>
 
-        <div className="fileInputContainer">
-          <ul className="filesContainer">
-            <div className=" w-14 h-14 border rounded-sm shadow-sm">
+        <div className={styles.fileInputContainer}>
+          <ul className={styles.filesContainer}>
+            <div className="w-14 h-14 border rounded-sm shadow-sm">
               <ImageIcon className="fill-blue-400 text-white" />
               <span>image.jpg</span>
             </div>
@@ -55,7 +55,7 @@ function CreatePostComponent<T>({ isVisible }: CreatePostComponentProps<T>) {
           <input
             type="file"
             accept="image/*"
-            className="fileInput"
+            className={styles.fileInput}
             onChange={handleImageInput}
           />
         </div>

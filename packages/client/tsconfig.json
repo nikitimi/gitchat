@@ -26,6 +26,6 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src", "svgr.d.ts"],
+  "include": ["src", "svgr.d.ts", "css-modules.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

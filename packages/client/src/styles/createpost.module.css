@@ -1,37 +1,37 @@
 .dialogBox {
-	border-radius: 0.125rem;
-	padding: 1.5rem;
-	background-color: white;
-	width: 40%;
+  border-radius: 0.125rem;
+  padding: 1.5rem;
+  background-color: white;
+  width: 40%;
 }
 .dialogBox::backdrop {
-	background-color: rgba(24, 24, 24, 80%);
+  background-color: rgba(24, 24, 24, 80%);
 }
 .mainContainer {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .textArea {
-	outline: 1px solid var(--black-50percent);
-	border-radius: 3px;
-	padding: 3px 6px;
+  outline: 1px solid var(--black-50percent) !important;
+  border-radius: 3px;
+  padding: 3px 6px;
 }
 .submitBtn {
-	background-color: var(--black-100percent);
-	border-radius: 3px;
-	color: white;
-	padding: 3px;
+  background-color: var(--black-100percent) !important;
+  border-radius: 3px;
+  color: white;
+  padding: 3px;
 }
 .fileInputContainer {
-	margin-top: 20px;
+  margin-top: 20px;
 
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 .filesContainer {
-	flex-basis: 100%;
+  flex-basis: 100%;
 
-	display: flex;
-	align-items: center;
-	gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

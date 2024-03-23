@@ -4,8 +4,8 @@ import { Link } from "react-router-dom"
 import useRegister from "~/hooks/useRegister"
 import useValidator from "~/hooks/useValidator"
 //styles
-import { ChangeEvent, FormEvent, useState } from "react"
-import "~/styles/registrationLogin.module.css"
+import { type ChangeEvent, type FormEvent, useState } from "react"
+import styles from "~/styles/registrationLogin.module.css"
 //components
 import RegisterSuccessComponent from "~/components/RegisterSuccessComponent"
 
@@ -85,69 +85,75 @@ function RegisterPage() {
   }
 
   return (
-    <div className="form-container">
+    <div className={styles.formContainer}>
       {isSuccess ? (
         <RegisterSuccessComponent />
       ) : (
-        <form onSubmit={handleSubmit} className="mainContainer">
-          <div className="inputContainer">
-            <div className="inputWrapper">
+        <form onSubmit={handleSubmit} className={styles.mainContainer}>
+          <div className={styles.inputContainer}>
+            <div className={styles.inputWrapper}>
               <input
                 type="text"
                 name="email"
-                className="inputBox"
+                className={styles.inputBox}
                 onChange={handleUserInfoInput}
                 required
               />
-              <label className="inputLabel">Email</label>
+              <label className={styles.inputLabel}>Email</label>
             </div>
             {/* error message */}
             {emailErrorMessage && (
-              <span className="errorText">{emailErrorMessage}</span>
+              <span className={styles.errorText}>{emailErrorMessage}</span>
             )}
           </div>
-          <div className="inputContainer">
-            <div className="inputWrapper">
+          <div className={styles.inputContainer}>
+            <div className={styles.inputWrapper}>
               <input
                 type="text"
                 name="username"
-                className="inputBox"
+                className={styles.inputBox}
                 onChange={handleUserInfoInput}
                 required
               />
-              <label className="inputLabel">Username</label>
+              <label className={styles.inputLabel}>Username</label>
             </div>
             {/* error message */}
             {usernameErrorMessage && (
-              <span className="errorText">{usernameErrorMessage}</span>
+              <span className={styles.errorText}>{usernameErrorMessage}</span>
             )}
           </div>
-          <div className="inputContainer">
-            <div className="inputWrapper">
+          <div className={styles.inputContainer}>
+            <div className={styles.inputWrapper}>
               <input
                 type="password"
                 name="password"
-                className="inputBox"
+                className={styles.inputBox}
                 onChange={handleUserInfoInput}
                 required
               />
-              <label className="inputLabel">Password</label>
+              <label className={styles.inputLabel}>Password</label>
             </div>
             {/* error message */}
             {passwordErrorMessage.map((error, index) => (
-              <span className="errorText" key={index}>
+              <span className={styles.errorText} key={index}>
                 {error}
               </span>
             ))}
           </div>
-          <button type="submit" className="btnSubmit" disabled={isLoading}>
+          <button
+            type="submit"
+            className={styles.btnSubmit}
+            disabled={isLoading}
+          >
             Register
           </button>
-          <span className="spanText">
+          <span className={styles.spanText}>
             Already have an account?
             <Link to="/login">Login here</Link>
           </span>
-          {internalError && <div className="serverErr">{internalError}</div>}
+          {internalError && (
+            <div className={styles.serverErr}>{internalError}</div>
+          )}
         </form>
       )}
     </div>

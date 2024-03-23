@@ -5,7 +5,7 @@ import { ChangeEvent, FormEvent, useState } from "react"
 import useValidator from "~/hooks/useValidator"
 import useLogin from "~/hooks/useLogin"
 //styles
-import "~/styles/registrationLogin.module.css"
+import styles from "~/styles/registrationLogin.module.css"
 
 type UserInfoStateProps = {
   username: string | null
@@ -61,46 +61,48 @@ function LoginPage() {
   }
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit} className="mainContainer">
-        <div className="inputContainer">
-          <div className="inputWrapper">
+    <div className={styles.formContainer}>
+      <form onSubmit={handleSubmit} className={styles.mainContainer}>
+        <div className={styles.inputContainer}>
+          <div className={styles.inputWrapper}>
             <input
               type="text"
               name="username"
-              className="inputBox"
+              className={styles.inputBox}
               onChange={handleUsernameInput}
               required
             />
-            <label className="inputLabel">Username</label>
+            <label className={styles.inputLabel}>Username</label>
           </div>
           {/* error message */}
           {usernameErrorMessage && (
-            <span className="errorText">{usernameErrorMessage}</span>
+            <span className={styles.errorText}>{usernameErrorMessage}</span>
           )}
         </div>
-        <div className="inputContainer">
-          <div className="inputWrapper">
+        <div className={styles.inputContainer}>
+          <div className={styles.inputWrapper}>
             <input
               type="password"
               name="password"
-              className="inputBox"
+              className={styles.inputBox}
               onChange={handlePasswordInput}
               required
             />
-            <label className="inputLabel">Password</label>
+            <label className={styles.inputLabel}>Password</label>
           </div>
           {/* error message */}
           {passwordErrorMessage && (
-            <span className="errorText">{passwordErrorMessage}</span>
+            <span className={styles.errorText}>{passwordErrorMessage}</span>
           )}
         </div>
-        <button className="btnSubmit">Login</button>
-        <span className="spanText">
+        <button className={styles.btnSubmit}>Login</button>
+        <span className={styles.spanText}>
           Don't have an account?
           <Link to="/register">Register here</Link>
         </span>
-        {internalError && <div className="serverErr">{internalError}</div>}
+        {internalError && (
+          <div className={styles.serverErr}>{internalError}</div>
+        )}
       </form>
     </div>
   )

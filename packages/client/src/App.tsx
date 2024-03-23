@@ -9,7 +9,8 @@ import HomePage from "~/pages/HomePage"
 import useAuthContext from "~/hooks/useAuthContext"
 
 function App() {
-  const { user } = useAuthContext()
+  const { state } = useAuthContext()
+
   return (
     <BrowserRouter>
       <Routes>
@@ -20,11 +21,11 @@ function App() {
         </Route>
         <Route
           path="/login"
-          element={user ? <Navigate to="/" /> : <LoginPage />}
+          element={state.user === null ? <LoginPage /> : <Navigate to="/" />}
         />
         <Route
           path="/register"
-          element={user ? <Navigate to="/" /> : <RegisterPage />}
+          element={state.user === null ? <RegisterPage /> : <Navigate to="/" />}
         />
       </Routes>
     </BrowserRouter>

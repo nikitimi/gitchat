@@ -3,9 +3,9 @@ import SidebarComponent from "~/components/SidebarComponent"
 
 function HomePage() {
   return (
-    <div className="home-container">
+    <div className="homeContainer">
       <SidebarComponent />
-      <div className="main-container">
+      <div className="mainContainer">
         <Outlet />
       </div>
     </div>

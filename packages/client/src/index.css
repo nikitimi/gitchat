@@ -4,20 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: "Fira Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  background-color: rgb(23 23 23 / 1);
-
-  height: 100vh;
-}
-#root {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+:root {
   --pure-black: rgb(0, 0, 0);
   --pure-white: rgb(255, 255, 255);
   --darker-white: rgb(240, 231, 231);
@@ -25,16 +12,32 @@ body {
   --black-100percent: rgba(24, 24, 24, 100%);
 }
 
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin: 0;
+  font-family: "Fira Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: rgb(23 23 23 / 1);
+  height: 100vh;
+}
+
 /* login and register pages */
-.form-container {
+.formContainer {
   display: flex;
   align-items: center;
 }
 
-.main-container {
+.mainContainer {
   height: 100%;
 }
-.home-container {
+.homeContainer {
   outline: 1px solid black;
   position: relative;
   width: 50%;
@@ -47,6 +50,6 @@ body {
 }
 
 /* modal temporary css */
-.modal-container::backdrop {
+.modalContainer::backdrop {
   background-color: rgba(110, 110, 110, 0.5);
 }

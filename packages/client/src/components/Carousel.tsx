@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "~/styles/posts.module.css"
+import styles from "~/styles/posts.module.css"
 
 const Carousel = () => {
   const [transformValue, setTransformValue] = useState("translate(0%)")
@@ -34,10 +34,10 @@ const Carousel = () => {
 
   return (
     <>
-      <div className="imgContainer">
-        <div className="imgCarousel">
+      <div className={styles.imgContainer}>
+        <div className={styles.imgCarousel}>
           <div
-            className="imgSlider"
+            className={styles.imgSlider}
             style={{
               width: `${imgUrl.length * 100}%`,
               transform: transformValue,
@@ -46,14 +46,11 @@ const Carousel = () => {
             {imgUrl &&
               imgUrl.map((image, index) => {
                 return (
-                  <section className="section" key={index}>
+                  <section className={styles.section} key={index}>
                     <img
                       src={image}
-                      alt=""
-                      style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                      }}
+                      alt={`image${index}`}
+                      className="max-w-full max-h-full"
                     />
                   </section>
                 )
@@ -74,7 +71,12 @@ type ButtonProps = {
 
 const Button = ({ text, onClick }: ButtonProps) => {
   return (
-    <button onClick={onClick} className={`buttons ${text}`}>
+    <button
+      onClick={onClick}
+      className={`${styles.buttons} ${
+        text === "next" ? styles.next : styles.previous
+      }`}
+    >
       {text}
     </button>
   )
