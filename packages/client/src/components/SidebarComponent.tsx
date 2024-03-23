@@ -1,15 +1,17 @@
 //imports
 import { NavLink } from "react-router-dom"
 //icons
-import ProfileIcon from "~/assets/IconProfile"
-import HomeIcon from "~/assets/IconHome"
+import ProfileIcon from "~/assets/Profile.svg?react"
+import HomeIcon from "~/assets/Home.svg?react"
 import { ReactNode } from "react"
+// import "sidebar.module.css"
 
-const navLink = "w-16 h-16 text-white flex items-center justify-center"
+const navLink =
+  "w-16 h-16 text-white flex items-center justify-center fill-none"
 
 function SidebarComponent() {
   return (
-    <div className="absolute top-0 -left-16 rounded-sm bg-black shadow-md">
+    <div className="absolute top-0 -left-16 rounded-sm bg-black shadow-md capitalize">
       <nav className="grid grid-flow-row">
         <CustomNavLink to="/">
           <HomeIcon />

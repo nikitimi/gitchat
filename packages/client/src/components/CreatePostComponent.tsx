@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import "~/styles/createpost.module.css"
-import ImageIcon from "~/assets/ImageIcon"
+import ImageIcon from "~/assets/Image.svg?react"
 
 type CreatePostComponentProps<T> = {
   isVisible: T
@@ -47,14 +47,8 @@ function CreatePostComponent<T>({ isVisible }: CreatePostComponentProps<T>) {
 
         <div className="fileInputContainer">
           <ul className="filesContainer">
-            <div className=" w-[60px] h-[60px] border">
-              <ImageIcon
-              // style={{
-              //   width: "100px",
-              //   height: "100px",
-              //   border: "1px solid black",
-              // }}
-              />
+            <div className=" w-14 h-14 border rounded-sm shadow-sm">
+              <ImageIcon className="fill-blue-400 text-white" />
               <span>image.jpg</span>
             </div>
           </ul>

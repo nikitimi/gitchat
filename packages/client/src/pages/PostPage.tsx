@@ -6,10 +6,10 @@ function PostPage() {
   return (
     <>
       <button
-        className=" bg-black text-white rounded-sm"
+        className=" bg-black text-white rounded-sm capitalize"
         onClick={() => setModalVisibility(true)}
       >
-        addpost
+        add post
       </button>
       <CreatePostComponent
         isVisible={modalVisibility}
