@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 :root {
+  --error: rgb(255, 56, 56);
   --pure-black: rgb(0, 0, 0);
   --pure-white: rgb(255, 255, 255);
   --darker-white: rgb(240, 231, 231);
@@ -24,7 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: rgb(23 23 23 / 1);
+  background-color: var(--black-100percent) !important;
   height: 100vh;
 }
 
@@ -38,7 +39,7 @@ body {
   height: 100%;
 }
 .homeContainer {
-  outline: 1px solid black;
+  outline: 1px solid var(--pure-black) !important;
   position: relative;
   width: 50%;
   padding: 20px;
@@ -46,10 +47,10 @@ body {
   border-top-right-radius: 6px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  background-color: var(--pure-white);
+  background-color: var(--pure-white) !important;
 }
 
 /* modal temporary css */
 .modalContainer::backdrop {
-  background-color: rgba(110, 110, 110, 0.5);
+  background-color: var(--black-50percent) !important;
 }

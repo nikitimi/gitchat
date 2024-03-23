@@ -22,10 +22,10 @@
 .buttons {
   position: absolute;
   top: 50%;
-  color: white;
+  color: var(--pure-white) !important;
   padding: 6px;
   transform: translateY(-50%);
-  border: 2px solid white;
+  border: 2px solid var(--pure-white) !important;
   border-radius: 12px;
   min-width: 96px;
   text-transform: capitalize;

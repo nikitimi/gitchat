@@ -1,7 +1,7 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--pure-white) !important;
   padding: 1.5rem;
   border-radius: 0.125rem;
   width: 24rem;
@@ -36,7 +36,7 @@
   left: 5px;
   top: 50%;
   font-weight: 200;
-  color: var(--black-50percent);
+  color: var(--black-50percent) !important;
   transform: translateY(-50%);
   transition: 0.1s linear;
   border-radius: 3px;
@@ -61,7 +61,7 @@
   background-color: var(--black-100percent) !important;
   height: 32px;
   border-radius: 3px;
-  color: white;
+  color: var(--pure-white) !important;
   transition: 0.1s linear;
 }
 .btnSubmit:disabled {
@@ -74,21 +74,20 @@
 }
 .errorText {
   font-size: 0.8rem;
-  color: rgb(255, 0, 0);
+  color: var(--error) !important;
   display: block;
 }
 .serverErr {
   font-size: 0.8rem;
-  color: rgb(255, 56, 56);
+  color: var(--error) !important;
   font-weight: 500;
-  border: 2px solid rgb(255, 82, 82);
-  background-color: rgb(255, 234, 234);
+  border: 2px solid var(--error) !important;
+  background-color: var(--darker-white) !important;
   border-radius: 3px;
   padding: 5px;
 }
 .textLabel {
   font-size: 1rem;
   padding: 20px;
-
   text-align: center;
 }
