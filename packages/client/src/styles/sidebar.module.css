@@ -29,12 +29,14 @@
   stroke: var(--darker-white) !important;
 }
 .active {
+  position: relative;
   background-color: var(--pure-white) !important;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 .active > .navIcons * {
+  fill: var(--pure-white) !important;
   stroke: var(--black-100percent) !important;
 }
 .active::after {

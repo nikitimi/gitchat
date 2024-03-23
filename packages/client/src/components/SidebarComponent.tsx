@@ -1,6 +1,6 @@
 //imports
 import { type ReactNode } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 //icons
 import styles from "~/styles/sidebar.module.css"
 import ProfileIcon from "~/assets/Profile.svg?react"
@@ -30,17 +30,15 @@ type CustomNavLinkProps = {
 }
 
 const CustomNavLink = ({ children, ...rest }: CustomNavLinkProps) => {
-  const activeAfterClasses =
-    "after:content-[''] after:absolute after:top-full after:h-1/2 after:w-1/2 after:right-0 after:rounded-tr-xl after:shadow-sm"
-  const activeBaseClasses = "bg-white rounded-tl-md rounded-tr-md rounded-bl-md"
+  const { pathname } = useLocation()
+  const isActive = pathname === (rest.to === "/" ? rest.to : `/${rest.to}`)
+
+  function activeStyle() {
+    return isActive ? `${styles.active}` : ""
+  }
+
   return (
-    <NavLink
-      {...rest}
-      className={`${({ isActive }: { isActive: boolean }) =>
-        isActive
-          ? `${activeBaseClasses} ${activeAfterClasses}`
-          : ""} ${navLink}`}
-    >
+    <NavLink {...rest} className={`${activeStyle()} ${navLink}`}>
       {children}
     </NavLink>
   )
