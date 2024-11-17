@@ -1,16 +1,19 @@
+'use client'
+
 //imports
 import Link from "next/link";
-import { useState } from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 //hooks
 import useValidator from "@/hooks/useValidator";
 import useLogin from "@/hooks/useLogin";
 //styles
-import styles from "../styles/registrationLogin.module.css";
+import styles from "@/styles/registrationLogin.module.css";
+import { UserInfo, UserInfoWithValues } from "@/utils/types/userInfo";
 
 function LoginPage() {
   const { login } = useLogin();
 
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<Omit<UserInfo, 'email'>>({
     username: null,
     password: null,
   });
@@ -23,28 +26,29 @@ function LoginPage() {
     serverInternalErrorMessage,
   } = useValidator();
 
-  const handleUsernameInput = (e) => {
+  const handleUsernameInput = (e:ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setUserInfo({
       ...userInfo,
       username: input,
     });
   };
-  const handlePasswordInput = (e) => {
+  const handlePasswordInput = (e:ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setUserInfo({
       ...userInfo,
       password: input,
     });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await login(userInfo);
+      if (Object.values(userInfo).includes(null)) return
+      await login(userInfo as Omit<UserInfoWithValues, 'email'>);
     } catch (error) {
-      serverPasswordError(error.passwordMessage);
-      serverUsernameError(error.usernameMessage);
-      serverInternalErrorMessage(error.message);
+      serverPasswordError((error as Error).message);
+      serverUsernameError((error as Error).message);
+      serverInternalErrorMessage((error as Error).message);
     }
   };
 
@@ -85,8 +89,8 @@ function LoginPage() {
         </div>
         <button className={styles.btnSubmit}>Login</button>
         <span className={styles.spanText}>
-          Don't have an account?
-          <Link to="/register">Register here</Link>
+          {"Don't have an account?"}
+          <Link href="/" passHref legacyBehavior>Register here</Link>
         </span>
         {internalError && (
           <div className={styles.serverErr}>{internalError}</div>

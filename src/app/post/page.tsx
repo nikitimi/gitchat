@@ -1,5 +1,7 @@
+'use client'
+
 import React, { useState } from "react";
-import CreatePostComponent from "../components/CreatePostComponent";
+import CreatePostComponent from "@/components/CreatePostComponent";
 function PostPage() {
 	const [modalVisibility, setModalVisibility] = useState(false);
 

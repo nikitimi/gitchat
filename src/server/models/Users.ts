@@ -24,7 +24,7 @@ const userSequelizer = (sequelize: Sequelize) => {
     },
   });
 
-  User.findByEmail = async function (email) {
+  User.findByEmail = async function (email:string) {
     return await User.findOne({ where: { email: email } });
   };
 
@@ -42,7 +42,7 @@ const userSequelizer = (sequelize: Sequelize) => {
     password: string
   ) {
     // validate inputs
-    let { emailMessage, usernameMessage, passwordMessage } =
+    const { emailMessage, usernameMessage, passwordMessage } =
       await this.validateInput(email, username, password);
     if (emailMessage || usernameMessage || passwordMessage) {
       throw {
@@ -78,7 +78,7 @@ const userSequelizer = (sequelize: Sequelize) => {
     };
   };
 
-  User.loginUser = async function (userInput) {
+  User.loginUser = async function (userInput:{username: string, password:string}) {
     if (!userInput.username) {
       throw {
         success: false,
@@ -120,7 +120,7 @@ const userSequelizer = (sequelize: Sequelize) => {
     };
   };
 
-  User.validateInput = function (email, username, password) {
+  User.validateInput = function (email:string, username:string, password:string) {
     let emailMessage = null;
     let usernameMessage = null;
     let passwordMessage = null;

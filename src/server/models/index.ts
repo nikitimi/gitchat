@@ -3,10 +3,10 @@
 import fs from "fs";
 import path from "path";
 import { Sequelize } from "sequelize";
-const process = require("process");
+import process from "process";
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.json")[env];
+import config from "@/server/config/config.json"
 const db = {};
 
 let sequelize;
@@ -31,7 +31,7 @@ fs.readdirSync(__dirname)
     );
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
+    const model = require(path.join(path.dirname(import.meta.url), file))(
       sequelize,
       Sequelize.DataTypes
     );

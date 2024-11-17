@@ -1,8 +1,8 @@
-import useAuthContext from "./useAuthContext";
-function useLogin() {
-	const { dispatch } = useAuthContext();
-	const login = async (data) => {
-		const response = await fetch("http://localhost:3001/api/users/login", {
+import type { UserInfoWithValues } from "@/utils/types/userInfo";
+
+const useRegister = () => {
+	const register = async (data:UserInfoWithValues) => {
+		const response = await fetch("http://localhost:3001/api/users/create", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -11,9 +11,7 @@ function useLogin() {
 		});
 		if (response.ok) {
 			const data = await response.json();
-			localStorage.setItem("user", JSON.stringify(data));
-			dispatch({ type: "LOGIN", payload: JSON.stringify(data) });
-			return;
+			return data;
 		}
 		if (response.status === 400) {
 			const error = await response.json();
@@ -26,8 +24,7 @@ function useLogin() {
 			throw error;
 		}
 	};
+	return { register };
+};
 
-	return { login };
-}
-
-export default useLogin;
+export default useRegister;

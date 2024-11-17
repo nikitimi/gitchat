@@ -1,5 +1,7 @@
 # GitChat
 
-TODO:
+Partial implementation of the UI from the original react.
 
-- implement type-safety to the existing logics.
+# TODO:
+
+- Implement is backend with typesafety.

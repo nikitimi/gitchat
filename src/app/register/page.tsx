@@ -1,13 +1,15 @@
+'use client'
 //imports
-import { Link } from "react-router-dom";
+import Link from "next/link";
 //hooks
 import useValidator from "@/hooks/useValidator";
 import useRegister from "@/hooks/useRegister";
 //styles
-import styles from "../styles/registrationLogin.module.css";
-import { useState } from "react";
+import styles from "@/styles/registrationLogin.module.css";
+import { type ChangeEvent,type FormEvent, useState } from "react";
 //components
 import RegisterSuccessComponent from "@/components/RegisterSuccessComponent";
+import type { UserInfoWithValues } from "@/utils/types/userInfo";
 
 function RegisterPage() {
   const { register } = useRegister();
@@ -26,12 +28,16 @@ function RegisterPage() {
     serverUsernameError,
     serverInternalErrorMessage,
   } = useValidator();
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<{
+    email: string | null,
+    username: string | null,
+    password: string | null,
+  }>({
     email: null,
     username: null,
     password: null,
   });
-  const handleEmailInput = (e) => {
+  const handleEmailInput = (e:ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     validateEmail(input);
     setUserInfo({
@@ -39,7 +45,7 @@ function RegisterPage() {
       email: input,
     });
   };
-  const handleUsernameInput = (e) => {
+  const handleUsernameInput = (e:ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     validateUsername(input);
     setUserInfo({
@@ -47,7 +53,7 @@ function RegisterPage() {
       username: input,
     });
   };
-  const handlePasswordInput = (e) => {
+  const handlePasswordInput = (e:ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     validatePassword(input);
     setUserInfo({
@@ -55,7 +61,7 @@ function RegisterPage() {
       password: input,
     });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
     e.preventDefault();
     if (
@@ -64,14 +70,15 @@ function RegisterPage() {
       passwordErrorMessage.length === 0
     ) {
       try {
-        await register(userInfo);
+        if (Object.values(userInfo).includes(null)) return
+        await register(userInfo as UserInfoWithValues);
         setIsSuccess(true);
         setIsLoading(false);
       } catch (error) {
-        serverEmailError(error.emailMessage);
-        serverUsernameError(error.usernameMessage);
-        serverPasswordError(error.passwordMessage);
-        serverInternalErrorMessage(error.message);
+        serverEmailError((error as Error).message);
+        serverUsernameError((error as Error).message);
+        serverPasswordError((error as Error).message);
+        serverInternalErrorMessage((error as Error).message);
         setIsLoading(false);
       }
     }
@@ -143,7 +150,7 @@ function RegisterPage() {
           </button>
           <span className={styles.spanText}>
             Already have an account?
-            <Link to="/login">Login here</Link>
+            <Link href="/login" passHref legacyBehavior>Login here</Link>
           </span>
           {internalError && (
             <div className={styles.serverErr}>{internalError}</div>

@@ -1,13 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import styles from "../styles/createpost.module.css";
-import ImageIcon from "../assets/ImageIcon";
-function CreatePostComponent({ isVisible, setVisibility }) {
-	const [images, setImages] = useState([]);
-	const modal = useRef();
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import styles from "@/styles/createpost.module.css";
+import ImageIcon from "@/assets/ImageIcon";
 
-	const handleImageInput = (e) => {
+type CreatePostComponentProps<T> = {
+	isVisible: T
+	 setVisibility: React.Dispatch<React.SetStateAction<T>>
+}
+
+function CreatePostComponent(props:CreatePostComponentProps<boolean>) {
+	const { isVisible } = props
+	const [images, setImages] = useState<File[]>([]);
+	const modal = useRef<HTMLDialogElement>(null);
+
+	const handleImageInput = (e:ChangeEvent<HTMLInputElement>) => {
+		const currentFiles = e.currentTarget.files
+		if (currentFiles === null) return
 		try {
-			const files = Array.from(e.target.files);
+			const files = Array.from(currentFiles);
 			files.forEach((file) => {
 				if (!file.type.startsWith("image/")) {
 					throw new Error("Invalid file type");
@@ -15,7 +24,7 @@ function CreatePostComponent({ isVisible, setVisibility }) {
 				setImages((prevFiles) => [...prevFiles, file]);
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.log((error as Error).message);
 		}
 	};
 
@@ -35,7 +44,9 @@ function CreatePostComponent({ isVisible, setVisibility }) {
 				<div className={styles.fileInputContainer}>
 					<ul className={styles.filesContainer}>
 						<div className=" w-[60px] h-[60px] border">
-							<ImageIcon style={{ width: "100px", height: "100px", border: "1px solid black" }} />
+							<ImageIcon 
+							// style={{ width: "100px", height: "100px", border: "1px solid black" }}
+							 />
 							<span>image.jpg</span>
 						</div>
 					</ul>

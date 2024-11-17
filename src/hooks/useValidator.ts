@@ -3,11 +3,11 @@ import { useState } from "react";
 function useErrorMessage() {
 	const [emailErrorMessage, setEmailErrorMessage] = useState("");
 	const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
-	const [passwordErrorMessage, setPasswordErrorMessage] = useState([]);
+	const [passwordErrorMessage, setPasswordErrorMessage] = useState<string[]>([]);
 	const [internalError, setInternalError] = useState("");
 
 	//validate email input
-	const validateEmail = (input) => {
+	const validateEmail = (input:string) => {
 		if (input === "") {
 			return setEmailErrorMessage("Email cannot be empty");
 		}
@@ -20,7 +20,7 @@ function useErrorMessage() {
 	};
 
 	//validate username input
-	const validateUsername = (input) => {
+	const validateUsername = (input:string) => {
 		if (input === "") {
 			return setUsernameErrorMessage("Username cannot be empty");
 		}
@@ -38,12 +38,12 @@ function useErrorMessage() {
 	};
 
 	//validate password input
-	const validatePassword = (input) => {
+	const validatePassword = (input:string) => {
 		const errors = [];
 		if (input === "") {
 			return setPasswordErrorMessage(["Password cannot be empty"]);
 		}
-		if (!input.length > 7) {
+		if (!(input.length > 7)) {
 			errors.push("Passwords must contain 8 or more characters");
 		}
 		if (!/(?=.*?[A-Z])/.test(input)) {
@@ -64,25 +64,25 @@ function useErrorMessage() {
 		return setPasswordErrorMessage(errors);
 	};
 
-	const serverUsernameError = (response) => {
+	const serverUsernameError = (response:string) => {
 		if (response) {
 			return setUsernameErrorMessage(response);
 		}
 		return setUsernameErrorMessage("");
 	};
-	const serverEmailError = (response) => {
+	const serverEmailError = (response:string) => {
 		if (response) {
 			return setEmailErrorMessage(response);
 		}
 		return setEmailErrorMessage("");
 	};
-	const serverPasswordError = (response) => {
+	const serverPasswordError = (response:string) => {
 		if (response) {
 			return setPasswordErrorMessage([response]);
 		}
 		return setPasswordErrorMessage([]);
 	};
-	const serverInternalErrorMessage = (response) => {
+	const serverInternalErrorMessage = (response:string) => {
 		if (response) {
 			return setInternalError(response);
 		}
